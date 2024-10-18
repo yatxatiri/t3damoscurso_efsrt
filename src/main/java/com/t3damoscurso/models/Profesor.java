@@ -12,7 +12,7 @@ public class Profesor {
     private int id_profesor;
 
     private String nombre;
-    private String especialidad;
+    private String email;
 
     // Constructor, getters y setters serán generados por Lombok (@Data)
 }

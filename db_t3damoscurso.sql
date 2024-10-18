@@ -73,5 +73,3 @@ CREATE TABLE notas_venta (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10,2)
 );
-
-alter table clases add constraint FKbachgu2487fctldodsx2etjfc foreign key (id_curso) references cursos (id)

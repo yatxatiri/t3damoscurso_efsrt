@@ -103,16 +103,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="user : ${listaProfesor}">
-                    <td th:text="${profe.professorId}"></td>
+                <tr th:each="profe : ${listaProfesor}">
+                    <td th:text="${profe.id_profesor}"></td>
                     <td th:text="${profe.nombre}"></td>
-                    <td th:text="${profe.correo}"></td>
+                    <td th:text="${profe.email}"></td>
 
                     <td>                    
-                        <a th:href="@{/admin-professor-edit/{id}(id=${profe.professorId})}" class="btn btn-warning btn-sm">
+                        <a th:href="@{/admin-professor-edit/{id}(id=${profe.id_profesor})}" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i> Editar
                         </a>
-                        <a th:href="@{/admin-user-delete/{id}(id=${profesor.professorId})}" class="btn btn-danger btn-sm">
+                        <a th:href="@{/admin-user-delete/{id}(id=${profe.id_profesor})}" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>
                     </td>
