@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuario</title>
+    <title>Registro de Usuario</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Estilos -->
+    <!-- Estilo -->
     <style>
         body {
             background-color: #f3f3f3;
@@ -49,33 +49,41 @@
         .alert {
             border-radius: 8px;
         }
+        .form-check-label {
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h2>Editar Usuario</h2>
+    <h2>Registro de Usuario</h2>
 
     <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
         <span th:text="${errorMessage}"></span>
     </div>
-
-    <!-- Formulariio-->
-<form th:action="@{/admin-user/edit/{id}(id=${usuario.id_usuario})}" th:object="${usuario}" method="post">
-        
+    
+    <!-- Formulario de registro -->
+    <form th:action="@{/admin-user-create}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese su nombre" required>
         </div>
-        
+
         <div class="form-group">
             <label for="correo">Correo electrónico:</label>
-            <input type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese su correo electrónico">
+            <input type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese su correo electrónico" required>
         </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Ingrese su contraseña" required>
+        </div>
+
         <div class="form-group">
             <label for="plan">Plan:</label>
-            <select class="form-control" id="plan" th:field="*{objPlan.id_plan}">
-            	<option selected value="0">Seleccionar</option>
-                <option th:each="plan : ${planes}" th:value="${plan.id_plan}" th:text="${plan.descripcion}"></option>
+            <select class="form-control" id="plan" th:field="*{plan.id}">
+                <option th:each="plan : ${planes}" th:value="${plan.id}" th:text="${plan.tipo}"></option>
             </select>
         </div>
 
@@ -90,11 +98,11 @@
                 <label class="form-check-label" for="administrador">Administrador</label>
             </div>
         </div>
-        
+
         <div class="text-center">
-            <a th:href="@{/admin-user/list}" class="btn btn-secondary">Cancelar</a>
+            <a th:href="@{/admin-user-list}" class="btn btn-secondary">Regresar</a>
             <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i> Guardar cambios
+                <i class="fas fa-user-plus"></i> Registrar
             </button>
         </div>
     </form>
@@ -106,4 +114,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

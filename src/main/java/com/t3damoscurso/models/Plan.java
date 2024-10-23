@@ -13,9 +13,9 @@ public class Plan {
     @Id
     private int id_plan;
 
-    private String nombre;  // Ejemplo: 'Experto', 'Dúo', 'Corporativo'
+    private String descripcion;  // Ejemplo: 'Experto', 'Dúo', 'Corporativo'
     private double precio;  // Precio mensual o total
-    private int maxUsuarios; // Máximo número de usuarios permitidos
+    private int max_usuarios; // Máximo número de usuarios permitidos
 
     // Constructor, getters y setters serán generados por Lombok (@Data)
 }

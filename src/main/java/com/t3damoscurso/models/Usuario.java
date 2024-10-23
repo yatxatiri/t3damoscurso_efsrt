@@ -16,14 +16,15 @@ public class Usuario {
     private int id_usuario;
 
     private String nombre;
-    private String email;
-    private String contraseña;
+    private String correo;
+    private String contrasena;
     private String rol; // Puede ser 'cliente', 'admin', etc.
 
     // Relación con los planes
     @ManyToOne
-    @JoinColumn(name = "id_plan", insertable = false, updatable = false)
-    private Plan plan;
+    @JoinColumn(name = "id_plan", insertable = false)
+    private Plan objPlan;
 
     // Constructor, getters y setters serán generados por Lombok (@Data)
+    private String fecha_registro;
 }

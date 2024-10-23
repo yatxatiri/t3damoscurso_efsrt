@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Profesores</title>
-    <!-- Estilos de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Estilo  -->
     <style>
         body {
             background-color: #f3f3f3;
@@ -18,112 +15,60 @@
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 30px;
             margin-top: 50px;
         }
         h2 {
             font-weight: 600;
             color: #0a84ff;
-        }
-        table {
-            border-collapse: separate;
-            border-spacing: 0 10px;
-        }
-        th, td {
-            vertical-align: middle;
-            border: none !important;
-        }
-        th {
-            color: #616161;
-            font-weight: 600;
-        }
-        td {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-bottom: 20px;
         }
         .btn {
-            border-radius: 8px;
-            font-weight: 600;
-        }
-        .btn-primary {
-            background-color: #0a84ff;
-            border-color: #0a84ff;
-        }
-        .btn-info {
-            background-color: #58a6ff;
-            border-color: #58a6ff;
-        }
-        .btn-warning {
-            background-color: #ffba08;
-            border-color: #ffba08;
-        }
-        .btn-danger {
-            background-color: #ff453a;
-            border-color: #ff453a;
-        }
-        .table-hover tbody tr:hover td {
-            background-color: #f0f0f0;
-        }
-        nav {
-            background-color: #f3f3f3;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 10px 0;
-        }
-        .navbar-brand {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #0a84ff !important;
+            margin: 5px;
         }
     </style>
 </head>
 <body>
+<div class="container">
+    <h2>Lista de Profesores</h2>
 
-    <!-- Barra de navegación  -->
-    <nav class="navbar navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Profesores</a>
-            <a th:href="@{/admin-user-create}" class="btn btn-primary">
-                <i class="fas fa-user-plus"></i> Registrar Profesor
-            </a>
-        </div>
-    </nav>
-
-    <div class="container mt-5">
-        <h2>Lista de Profesores</h2>
-
-        <!-- Tabla de usuarios -->
-        <table class="table table-hover mt-4">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombres</th>
-                    <th>Correo</th>
-                    <th>Acciones</th>              
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="profe : ${listaProfesor}">
-                    <td th:text="${profe.id_profesor}"></td>
-                    <td th:text="${profe.nombre}"></td>
-                    <td th:text="${profe.email}"></td>
-
-                    <td>                    
-                        <a th:href="@{/admin-professor-edit/{id}(id=${profe.id_profesor})}" class="btn btn-warning btn-sm">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                        <a th:href="@{/admin-user-delete/{id}(id=${profe.id_profesor})}" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash"></i> Eliminar
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div th:if="${mensaje}" class="alert alert-success" role="alert">
+        <span th:text="${mensaje}"></span>
     </div>
 
-    <!-- Scripts de Bootstrap y jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prof : ${listaProfesor}">
+                <td th:text="${prof.id_profesor}"></td>
+                <td th:text="${prof.nombre}"></td>
+                <td th:text="${prof.email}"></td>
+                <td>
+                    <a th:href="@{/admin-professor/edit/{id}(id=${prof.id_profesor})}" class="btn btn-warning">
+                        <i class="fas fa-user-edit"></i> Editar
+                    </a>
+                    <a th:href="@{/admin-professor/delete/{id}(id=${prof.id_profesor})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar a este profesor?');">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin-professor/create}" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i> Agregar Profesor
+    </a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

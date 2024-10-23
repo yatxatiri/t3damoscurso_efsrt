@@ -1,132 +1,152 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
-    <!-- Estilos de Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Iconos de FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Estilo  -->
-    <style>
-        body {
-            background-color: #f3f3f3;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 50px;
-        }
-        h2 {
-            font-weight: 600;
-            color: #0a84ff;
-        }
-        table {
-            border-collapse: separate;
-            border-spacing: 0 10px;
-        }
-        th, td {
-            vertical-align: middle;
-            border: none !important;
-        }
-        th {
-            color: #616161;
-            font-weight: 600;
-        }
-        td {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        }
-        .btn {
-            border-radius: 8px;
-            font-weight: 600;
-        }
-        .btn-primary {
-            background-color: #0a84ff;
-            border-color: #0a84ff;
-        }
-        .btn-info {
-            background-color: #58a6ff;
-            border-color: #58a6ff;
-        }
-        .btn-warning {
-            background-color: #ffba08;
-            border-color: #ffba08;
-        }
-        .btn-danger {
-            background-color: #ff453a;
-            border-color: #ff453a;
-        }
-        .table-hover tbody tr:hover td {
-            background-color: #f0f0f0;
-        }
-        nav {
-            background-color: #f3f3f3;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 10px 0;
-        }
-        .navbar-brand {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #0a84ff !important;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usuarios</title>
+<!-- Estilos de Bootstrap -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Iconos de FontAwesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- Estilo  -->
+<style>
+body {
+	background-color: #f3f3f3;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+	background-color: white;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	margin-top: 50px;
+}
+
+h2 {
+	font-weight: 600;
+	color: #0a84ff;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0 10px;
+}
+
+th, td {
+	vertical-align: middle;
+	border: none !important;
+}
+
+th {
+	color: #616161;
+	font-weight: 600;
+}
+
+td {
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn {
+	border-radius: 8px;
+	font-weight: 600;
+}
+
+.btn-primary {
+	background-color: #0a84ff;
+	border-color: #0a84ff;
+}
+
+.btn-info {
+	background-color: #58a6ff;
+	border-color: #58a6ff;
+}
+
+.btn-warning {
+	background-color: #ffba08;
+	border-color: #ffba08;
+}
+
+.btn-danger {
+	background-color: #ff453a;
+	border-color: #ff453a;
+}
+
+.table-hover tbody tr:hover td {
+	background-color: #f0f0f0;
+}
+
+nav {
+	background-color: #f3f3f3;
+	border-bottom: 1px solid #e0e0e0;
+	padding: 10px 0;
+}
+
+.navbar-brand {
+	font-weight: 600;
+	font-size: 1.2rem;
+	color: #0a84ff !important;
+}
+</style>
 </head>
 <body>
 
-    <!-- Barra de navegación  -->
-    <nav class="navbar navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Usuarios</a>
-            <a th:href="@{/admin-user-create}" class="btn btn-primary">
-                <i class="fas fa-user-plus"></i> Registrar Usuario
-            </a>
-        </div>
-    </nav>
+	<!-- Barra de navegación  -->
+	<nav class="navbar navbar-light">
+		<div class="container">
+			<a class="navbar-brand" href="#">Usuarios</a> <a
+				th:href="@{/admin-user/create}" class="btn btn-primary"> <i
+				class="fas fa-user-plus"></i> Registrar Usuario
+			</a>
+		</div>
+	</nav>
 
-    <div class="container mt-5">
-        <h2>Lista de Usuarios</h2>
+	<div class="container mt-5">
+		<h2>Lista de Usuarios</h2>
 
-        <!-- Tabla de usuarios -->
-        <table class="table table-hover mt-4">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombres</th>
-                    <th>Correo</th>
-                    <th>Plan</th>
-                    <th>Fecha de Registro</th>
-                    <th>Acciones</th>              
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="user : ${listaUsuario}">
-                    <td th:text="${user.usuarioId}"></td>
-                    <td th:text="${user.nombre}"></td>
-                    <td th:text="${user.correo}"></td>
-                    <td th:text="${user.plan}"></td>
-                    <td th:text="${user.fechaRegistro}"></td>
-                    <td>                    
-                        <a th:href="@{/admin-user-edit/{id}(id=${user.usuarioId})}" class="btn btn-warning btn-sm">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                        <a th:href="@{/admin-user-delete/{id}(id=${user.usuarioId})}" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash"></i> Eliminar
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+		<!-- Tabla de usuarios -->
+		<table class="table table-hover mt-4">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombres</th>
+					<th>Correo</th>
+					<th>Plan</th>
+					<th>Fecha de Registro</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${listUsuarios}">
+					<td th:text="${user.id_usuario}"></td>
+					<td th:text="${user.nombre}"></td>
+					<td th:text="${user.correo}"></td>
+					<td th:text="${user.rol}"></td>
+					<td th:text="${user.objPlan != null ? user.objPlan.descripcion : 'Sin Plan'}"></td>
+					<td><a
+						th:href="@{/admin-user/edit/{id}(id=${user.id_usuario})}"
+						class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i>
+							Editar
+					</a>
+					<a 	th:href="@{/admin-user/delete/{id}(id=${user.id_usuario})}" 
+						class="btn btn-danger btn-sm">
+					Eliminar
+					</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
-    <!-- Scripts de Bootstrap y jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- Scripts de Bootstrap y jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Profesores</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Estilo -->
     <style>
         body {
             background-color: #f3f3f3;
@@ -63,8 +60,7 @@
         <span th:text="${errorMessage}"></span>
     </div>
     
-    <!-- Formulario de registro -->
-    <form th:action="@{/admin-professor-create}" th:object="${profe}" method="post">
+    <form th:action="@{/admin-professor/create}" th:object="${profe}" method="post">
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese su nombre" required>
@@ -72,13 +68,11 @@
 
         <div class="form-group">
             <label for="correo">Correo electrónico:</label>
-            <input  type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese su correo electrónico" required>
+            <input type="email" class="form-control" id="correo" th:field="*{email}" placeholder="Ingrese su correo electrónico" required>
         </div>
 
-        
-
         <div class="text-center">
-            <a th:href="@{/admin-professor-list}" class="btn btn-secondary">Regresar</a>
+            <a th:href="@{/admin-professor/list}" class="btn btn-secondary">Regresar</a>
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-user-plus"></i> Registrar
             </button>
@@ -86,7 +80,6 @@
     </form>
 </div>
 
-<!-- Scripts de Bootstrap y jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

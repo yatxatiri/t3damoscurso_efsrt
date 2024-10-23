@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuario</title>
+    <title>Registro de Profesores</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Estilos -->
+    <!-- Estilo -->
     <style>
         body {
             background-color: #f3f3f3;
@@ -49,52 +49,38 @@
         .alert {
             border-radius: 8px;
         }
+        .form-check-label {
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h2>Editar Usuario</h2>
+    <h2>Registro de Profesores</h2>
 
     <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
         <span th:text="${errorMessage}"></span>
     </div>
-
-    <!-- Formulariio-->
-<form th:action="@{/admin-user/edit/{id}(id=${usuario.id_usuario})}" th:object="${usuario}" method="post">
-        
+    
+    <!-- Formulario de registro -->
+    <form th:action="@{/admin-professor-create}" th:object="${profe}" method="post">
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese su nombre" required>
         </div>
-        
-        <div class="form-group">
-            <label for="correo">Correo electrónico:</label>
-            <input type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese su correo electrónico">
-        </div>
-        <div class="form-group">
-            <label for="plan">Plan:</label>
-            <select class="form-control" id="plan" th:field="*{objPlan.id_plan}">
-            	<option selected value="0">Seleccionar</option>
-                <option th:each="plan : ${planes}" th:value="${plan.id_plan}" th:text="${plan.descripcion}"></option>
-            </select>
-        </div>
 
         <div class="form-group">
-            <label for="rol">Rol:</label><br>
-            <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" id="usuario" name="rol" th:value="'usuario'" th:field="*{rol}">
-                <label class="form-check-label" for="usuario">Usuario</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" id="administrador" name="rol" th:value="'administrador'" th:field="*{rol}">
-                <label class="form-check-label" for="administrador">Administrador</label>
-            </div>
+            <label for="correo">Correo electrónico:</label>
+            <input  type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese su correo electrónico" required>
         </div>
+
         
+
         <div class="text-center">
-            <a th:href="@{/admin-user/list}" class="btn btn-secondary">Cancelar</a>
+            <a th:href="@{/admin-professor-list}" class="btn btn-secondary">Regresar</a>
             <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i> Guardar cambios
+                <i class="fas fa-user-plus"></i> Registrar
             </button>
         </div>
     </form>
@@ -106,4 +92,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
